@@ -62,6 +62,8 @@ New-ADUser -Name "Petr P. Petrov" -DisplayName "Petr P. Petrov" -GivenName "Petr
 -Enabled $true -ChangePasswordAtLogon $false
 ```
 
+Добавить Windows client в домен corp
+
 Настройка второго домен котроллера. (Не обязательно)
 
 Упражнение 2: Развертывание контроллеров домена путем выполнения клонирования контроллера домена
