@@ -180,3 +180,66 @@ auth_mechanisms = gssapi plain
 ```
 gate# mail user1
 ```
+
+Roundcube LDAP Addressbook
+Установка
+```
+# apt install php-net-ldap3
+```
+Настройка
+```
+# nano /var/lib/roundcube/config/config.inc.php
+```
+```
+...
+$config['ldap_public']['ldap'] = array(
+  'name'          => 'Global Addresses',
+  'hosts'         => array('dc.corp.ru'),
+  'port'          => 389,
+  'use_tls'       => false,
+  'ldap_version'  => 3,       // using LDAPv3
+  'network_timeout' => 10,    // The timeout (in seconds) for connect + bind arrempts. This is only supported in PHP >= 5.3.0 with OpenLDAP 2.x
+  'user_specific' => false,   // If true the base_dn, bind_dn and bind_pass default to the user's IMAP login.
+
+  'base_dn'       => 'cn=Users,dc=corp,dc=ru',
+  'bind_dn'       => 'cn=Administrator,cn=Users,dc=corp,dc=ru',
+  'bind_pass'     => 'Pa$$w0rd',
+
+  'search_filter'  => '',   // e.g. '(&(objectClass=posixAccount)(uid=%u))'
+  'fieldmap' => array(
+    // Roundcube  => LDAP:limit
+    'name'        => 'cn',
+    'surname'     => 'sn',
+    'firstname'   => 'givenName',
+    'jobtitle'    => 'title',
+    'email'       => 'mail:*',
+    'phone:home'  => 'homePhone',
+    'phone:work'  => 'telephoneNumber',
+    'phone:mobile' => 'mobile',
+    'phone:pager' => 'pager',
+    'phone:workfax' => 'facsimileTelephoneNumber',
+    'street'      => 'street',
+    'zipcode'     => 'postalCode',
+    'region'      => 'st',
+    'locality'    => 'l',
+    'country'      => 'c',
+    'organization' => 'o',
+    'department'   => 'ou',
+    'jobtitle'     => 'title',
+    'notes'        => 'description',
+    'photo'        => 'jpegPhoto',
+  ),
+  'sort'           => 'cn',         // The field to sort the listing by.
+  'scope'          => 'sub',        // search mode: sub|base|list
+  'filter'         => '(mail=*)',      // used for basic listing (if not empty) and will be &'d with search queries. example: status=act
+  'fuzzy_search'   => true,         // server allows wildcard search
+  'vlv'            => false,        // Enable Virtual List View to more efficiently fetch paginated data (if server supports it)
+  'vlv_search'     => false,        // Use Virtual List View functions for autocompletion searches (if server supports it)
+  'numsub_filter'  => '(objectClass=organizationalUnit)',   // with VLV, we also use numSubOrdinates to query the total number of records. Set this filter to get all numSubOrdinates attributes for counting
+  'config_root_dn' => 'cn=config',  // Root DN to search config entries (e.g. vlv indexes)
+  'sizelimit'      => '0',          // Enables you to limit the count of entries fetched. Setting this to 0 means no limit.
+  'timelimit'      => '0',          // Sets the number of seconds how long is spend on the search. Setting this to 0 means no limit.
+  'referrals'      => false,        // Sets the LDAP_OPT_REFERRALS option. Mostly used in multi-domain Active Directory setups
+  'dereference'    => 0,            // Sets the LDAP_OPT_DEREF option. One of: LDAP_DEREF_NEVER, LDAP_DEREF_SEARCHING, LDAP_DEREF_FINDING, LDAP_DEREF_ALWAYS
+                                    // Used where addressbook contains aliases to objects elsewhere in the LDAP tree.
+```
