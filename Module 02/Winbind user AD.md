@@ -40,6 +40,20 @@ http_access allow inetuser
 ```
 gate# getent group group1 | cut -f4 -d: | tr "," "\n" | tee /etc/squid/group1.acl
 
+```
+```
+gate# nano /etc/squid/conf.d/my.conf
+```
+```
+
+auth_param negotiate program /usr/lib/squid/negotiate_kerberos_auth -d
+#acl inetuser proxy_auth REQUIRED
+#acl inetuser proxy_auth user1@CORP.RU user2@CORP.RU
+acl inetuser proxy_auth_regex "/etc/squid/group1.acl"
+
+http_access allow inetuser
+```
+```
 gate# squid -k reconfigure
 ```
 Для winbind авторизации
