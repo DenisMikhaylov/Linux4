@@ -55,7 +55,7 @@ gate# wbinfo -g
 Управление ключами KERBEROS в режиме ADS
 
 ```
-# net ads setspn add HTTP/gate.corp.ru
+# net ads setspn add HTTP/gate.corp.ru -U Administrator
 
 # net ads keytab create
 ```
