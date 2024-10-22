@@ -91,8 +91,4 @@ shadow:         files winbind
 gate# id user1
 gate# getent passwd
 gate# getent group
-gate# chown -R user1:'domain users' /home/user1/
-gate# chown user1 /var/mail/user1
-gate# chown -R user2:'domain users' /home/user2/
-gate# chown user2 /var/mail/user2
 ```
