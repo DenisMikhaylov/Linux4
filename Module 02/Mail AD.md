@@ -100,3 +100,83 @@ root@server:~# service postfix check
 
 root@server:~# service postfix reload
 ```
+Управление ключами KERBEROS в режиме ADS
+
+```
+gate# klist -ek /etc/krb5.keytab
+```
+```
+gate# kinit Administrator
+```
+```
+samba4.9+# net ads keytab add_update_ads HTTP -k
+
+samba4.9+# net ads keytab add_update_ads imap -k
+
+samba4.9+# net ads keytab add_update_ads smtp -k
+   
+samba4.9+# net ads keytab add_update_ads xmpp -k
+
+gate# klist -ek /etc/krb5.keytab
+
+gate# net ads setspn list gate
+```
+Kerberos GSSAPI аутентификация
+
+```
+apt install dovecot-gssapi
+```
+Добавляем пользователя в AD
+
+```
+Login: gatesmtp
+Login: gateimap
+Password: Pa$$w0rd
+Пароль не меняется и не устаревает
+```
+
+Создаем ключ сервиса http 
+```
+C:\>ktpass -princ imap/gate.corp.ru@CORP.RU -mapuser gateimap -pass 'Pa$$w0rd' -out gateimap.keytab
+
+C:\>ktpass -princ smtp/gate.corp.ru@CORP.RU -mapuser gatesmtp -pass 'Pa$$w0rd' -out gatesmtp.keytab
+```
+Копируем ключ сервиса http сервер dovecot
+```
+C:\>pscp gateimap.keytab root@gate:
+
+C:\>pscp gatesmtp.keytab root@gate:
+```
+
+Копируем ключи в системный keytab
+
+```
+root@gate:~# ktutil
+```
+```
+ktutil:  rkt /root/gateimap.keytab
+ktutil:  rkt /root/gatesmtp.keytab
+ktutil:  wkt /etc/krb5.keytab
+ktutil:  quit
+```
+```
+root@gate:~# klist -k /etc/krb5.keytab
+```
+
+Настройка dovecot на использование GSSAPI
+```
+# nano /etc/dovecot/conf.d/10-auth.conf
+```
+```
+...
+auth_gssapi_hostname = "$ALL"
+...
+auth_mechanisms = gssapi plain
+...
+```
+```
+# chmod +r /etc/krb5.keytab
+```
+```
+gate# mail user1
+```
