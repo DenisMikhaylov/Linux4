@@ -28,6 +28,7 @@ gate# service winbind restart
 gate# nano /etc/squid/conf.d/my.conf
 ```
 ```
+...
 #acl inetuser proxy_auth REQUIRED
 acl inetuser proxy_auth user1@CORP.RU user2@CORP.RU
 #acl inetuser proxy_auth_regex "/etc/squid/group1.acl"
