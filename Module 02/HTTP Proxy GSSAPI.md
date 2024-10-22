@@ -7,7 +7,7 @@
 # nano /etc/resolv.conf
 ```
 ```
-search corpюкг
+search corp.кг
 nameserver 192.168.10.10
 ```
 Задача 2 : Настройка Kerberos клиента
@@ -22,7 +22,7 @@ nameserver 192.168.10.10
 ```
 ```
 [libdefaults]
-    default_realm = CORPX.UN
+    default_realm = CORP.RU
 ```
 Тестирование
 ```
