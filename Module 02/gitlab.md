@@ -6,7 +6,7 @@ GITLAB
 
 # curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | bash
 
-# apt install gitlab-ce
+# EXTERNAL_URL="http://$(hostname)" apt-get install gitlab-ce
 ```
 
 
