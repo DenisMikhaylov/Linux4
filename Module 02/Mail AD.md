@@ -242,6 +242,7 @@ $config['ldap_public']['ldap'] = array(
   'referrals'      => false,        // Sets the LDAP_OPT_REFERRALS option. Mostly used in multi-domain Active Directory setups
   'dereference'    => 0,            // Sets the LDAP_OPT_DEREF option. One of: LDAP_DEREF_NEVER, LDAP_DEREF_SEARCHING, LDAP_DEREF_FINDING, LDAP_DEREF_ALWAYS
                                     // Used where addressbook contains aliases to objects elsewhere in the LDAP tree.
+);
 ```
 ```
 service apache2 restart
