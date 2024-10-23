@@ -29,7 +29,7 @@ gitlab_rails['ldap_servers'] = YAML.load <<-'EOS'
     host: 'dc.corp.ru'
     port: 389
     uid: 'sAMAccountName'
-    bind_dn: 'cn=Administrator,cn=Users,dc=corpX,dc=un'
+    bind_dn: 'cn=Administrator,cn=Users,dc=corp,dc=ru'
     password: 'Pa$$w0rd'
     encryption: 'plain'
     active_directory: true
