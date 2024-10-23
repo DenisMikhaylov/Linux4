@@ -37,3 +37,10 @@ gitlab_rails['ldap_servers'] = YAML.load <<-'EOS'
 EOS
 ...
 ```
+Проверка настроек и перезагрузага
+
+```
+# gitlab-ctl show-config
+
+# time gitlab-ctl reconfigure
+```
