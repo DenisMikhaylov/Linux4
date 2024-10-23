@@ -1,5 +1,7 @@
 GITLAB
 
+Нужно минимум 4 GB
+
 Установка из репозитория
 ```
 # apt install -y curl ca-certificates perl
