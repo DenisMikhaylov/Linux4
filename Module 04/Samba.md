@@ -78,6 +78,14 @@ samba-tool user create user3 'Pa$$w0rd4' --given-name 'Сергей' --initials 
 samba-tool user list
 ```
 
+GPO
+```
+find /var/lib/samba/sysvol
+```
+Требуется в ручную копирование с MS AD
+```
+robocopy \\dc\SYSVOL\corp.ru\ \\SERVER\SYSVOL\corp.ru\ /mir /sec
+```
 Замена MS на Samba4
 
 ```
