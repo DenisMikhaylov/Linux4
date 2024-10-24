@@ -70,6 +70,13 @@ server# samba-tool user list
 ```
 server# samba-tool ldapcmp ldap://dc.corp.ru ldap://server.corp.ru -Uadministrator
 ```
+Добавление пользователя
+```
+samba-tool user create user3 'Pa$$w0rd4' --given-name 'Сергей' --initials 'М' --surname 'Сергеевич' #--mail-address=user3@corp.ru
+```
+```
+samba-tool user list
+```
 
 Замена MS на Samba4
 
