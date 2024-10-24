@@ -1,0 +1,91 @@
+Установка 
+
+Подключиться к server
+
+```
+# apt update
+
+# apt install samba winbind
+```
+```
+# mv /etc/samba/smb.conf /etc/samba/smb_old.conf
+```
+
+Инициализация домена
+```
+samba-tool domain provision --use-rfc2307 --interactive
+```
+```
+Realm [CORP.ru]:
+ Domain [CORP]:
+ Server Role (dc, member, standalone) [dc]:
+ DNS backend (SAMBA_INTERNAL, BIND9_FLATFILE, BIND9_DLZ, NONE) [SAMBA_INTERNAL]:
+ DNS forwarder IP address (write 'none' to disable forwarding) [8.8.8.8]:
+Administrator password: Pa$$w0rd
+Retype password: Pa$$w0rd
+```
+Настройка Kerberos клиента
+```
+apt install krb5-user
+```
+
+```
+nano /etc/krb5.conf
+```
+```
+[libdefaults]
+    default_realm = CORP.RU
+```
+
+```
+cp /var/lib/samba/private/krb5.conf /etc/krb5.conf
+```
+```
+testparm
+```
+```
+nano /etc/samba/smb.conf
+```
+```
+[global]
+        ldap server require strong auth = no
+```
+
+Настройка контроллером существующего домена
+
+```
+# kinit administrator
+```
+```
+# samba-tool domain join corp.ru DC -k yes --dns-backend=SAMBA_INTERNAL --option="dns forwarder=8.8.8.8"
+```
+
+Запуск репликации
+```
+# samba-tool drs showrepl
+```
+```
+server# samba-tool user list
+```
+```
+server# samba-tool ldapcmp ldap://dc.corp.ru ldap://server.corp.ru -Uadministrator
+```
+
+Замена MS на Samba4
+
+```
+server# samba-tool fsmo show
+```
+Проверка на DC
+```
+PS C:\Users\Administrator> ntdsutil
+```
+
+```
+server# samba-tool fsmo seize --role=forestdns
+
+server# samba-tool fsmo seize --role=domaindns
+
+server# samba-tool fsmo show | grep SERVER
+```
+
