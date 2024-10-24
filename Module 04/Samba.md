@@ -91,9 +91,24 @@ robocopy \\dc\SYSVOL\corp.ru\ \\SERVER\SYSVOL\corp.ru\ /mir /sec
 ```
 server# samba-tool fsmo show
 ```
+
+
 Проверка на DC
 ```
 PS C:\Users\Administrator> ntdsutil
+```
+```
+roles
+connections
+connect to server server
+q
+transfer naming master
+transfer infrastructure master
+transfer rid master
+transfer schema master
+transfer pdc
+q
+q
 ```
 
 ```
