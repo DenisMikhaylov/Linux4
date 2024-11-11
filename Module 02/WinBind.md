@@ -15,6 +15,8 @@ gate# rm -v /root/*keytab /etc/krb5.keytab
 
 Задача 2: Установка службы winbindd
 
+Подключить к серверу Gate
+
 Установка Samba
 
 ```
