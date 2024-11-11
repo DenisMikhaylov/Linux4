@@ -7,7 +7,7 @@
 # nano /etc/resolv.conf
 ```
 ```
-search corp.кг
+search corp.ru
 nameserver 192.168.10.10
 ```
 Задача 2 : Настройка Kerberos клиента
