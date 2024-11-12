@@ -21,4 +21,4 @@ gate# apt install libsasl2-modules-gssapi-mit
 
 gate# kinit Administrator
 
-gate# ldapsearch -h dc -b "dc=corp,dc=ru" "sAMAccountName=user1"
+gate# ldapsearch -H ldap://dc -b "dc=corp,dc=ru" "sAMAccountName=user1"
