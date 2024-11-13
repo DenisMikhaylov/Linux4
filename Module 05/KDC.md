@@ -1,5 +1,6 @@
 Добавить дополнительную виртуальную машину с debian
 
+
 Поднять BIND DNS
 
 Добавить в конец
@@ -11,7 +12,7 @@
 Установка
 
 ```
-server2:~# apt install krb5-kdc krb5-admin-server
+server3:~# apt install krb5-kdc krb5-admin-server
 ```
 
 Настройка
