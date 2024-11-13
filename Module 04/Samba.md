@@ -118,6 +118,6 @@ server2# samba-tool fsmo seize --role=forestdns
 
 server2# samba-tool fsmo seize --role=domaindns
 
-server2# samba-tool fsmo show | grep SERVER
+server2# samba-tool fsmo show | grep SERVER2
 ```
 
