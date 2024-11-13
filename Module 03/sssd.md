@@ -8,6 +8,9 @@
 ```
 lcliant# apt install packagekit sssd-ad sssd-tools realmd adcli auditd
 ```
+```
+pam-auth-update --enable mkhomedir
+```
 Просмотр настроек
 ```
 lcliant# less /etc/nsswitch.conf
