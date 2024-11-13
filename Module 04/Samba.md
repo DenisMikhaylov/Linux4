@@ -67,10 +67,10 @@ nano /etc/samba/smb.conf
 # samba-tool drs showrepl
 ```
 ```
-server# samba-tool user list
+server2# samba-tool user list
 ```
 ```
-server# samba-tool ldapcmp ldap://dc.corp.ru ldap://server.corp.ru -Uadministrator
+server2# samba-tool ldapcmp ldap://dc.corp.ru ldap://server.corp.ru -Uadministrator
 ```
 Добавление пользователя
 ```
@@ -102,7 +102,7 @@ PS C:\Users\Administrator> ntdsutil
 ```
 roles
 connections
-connect to server server
+connect to server server2
 q
 transfer naming master
 transfer infrastructure master
@@ -114,10 +114,10 @@ q
 ```
 
 ```
-server# samba-tool fsmo seize --role=forestdns
+server2# samba-tool fsmo seize --role=forestdns
 
-server# samba-tool fsmo seize --role=domaindns
+server2# samba-tool fsmo seize --role=domaindns
 
-server# samba-tool fsmo show | grep SERVER
+server2# samba-tool fsmo show | grep SERVER
 ```
 
