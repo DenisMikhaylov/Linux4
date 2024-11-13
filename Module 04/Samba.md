@@ -86,7 +86,7 @@ find /var/lib/samba/sysvol
 ```
 Требуется в ручную копирование с MS AD
 ```
-robocopy \\dc\SYSVOL\corp.ru\ \\SERVER\SYSVOL\corp.ru\ /mir /sec
+robocopy \\dc\SYSVOL\corp.ru\ \\SERVER2\SYSVOL\corp.ru\ /mir /sec
 ```
 Замена MS на Samba4
 
