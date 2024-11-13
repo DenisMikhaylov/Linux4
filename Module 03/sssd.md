@@ -6,7 +6,7 @@
 Установка sssd
 
 ```
-lcliant# apt install packagekit sssd-ad sssd-tools realmd adcli auditd
+lcliant# apt install packagekit sssd-ad sssd-tools realmd adcli auditd dnsutils
 ```
 ```
 pam-auth-update --enable mkhomedir
