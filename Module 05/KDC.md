@@ -2,6 +2,7 @@
 
 
 Поднять BIND DNS
+https://github.com/DenisMikhaylov/Linux-2/blob/main/Module%203%20/DNS.md
 
 Добавить в конец
 ```
